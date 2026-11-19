@@ -1,0 +1,104 @@
+/* Reverse Clips site: same identity as the app (brand orange #F47E17, dark ink on orange, light and dark modes).
+   The name uses Kaushan Script, self-hosted (SIL OFL 1.1, see fonts/KaushanScript-OFL.txt); everything else uses
+   system fonts. No third-party requests, no cookies. */
+
+@font-face { font-family: "Kaushan Script"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/KaushanScript-Regular.ttf") format("truetype"); }
+
+:root {
+  --bg: #faf8f5;
+  --surface: #ffffff;
+  --ink: #1c1c1e;
+  --muted: #5c5752;
+  --line: #e7e1da;
+  --orange: #f47e17;      /* brand orange: backgrounds only, never text on light */
+  --on-orange: #1b0f02;   /* text on orange (7.0:1) */
+  --accent-ink: #a84f00;  /* orange used as text in light mode (5.5:1 on white) */
+  --radius: 22px;
+  --max: 760px;
+  --script: "Kaushan Script", "Brush Script MT", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e10; --surface: #1c1c1e; --ink: #f2f2f7; --muted: #a8a8ae; --line: #2c2c30;
+    --accent-ink: #f47e17;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.6;
+}
+a { color: var(--accent-ink); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+img { max-width: 100%; height: auto; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+
+header.site { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--script); font-size: 24px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.brand img { width: 32px; height: 32px; }
+nav.site { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+nav.site a { color: var(--muted); text-decoration: none; margin-left: 16px; font-size: 15px; font-weight: 600; }
+nav.site a:hover, nav.site a[aria-current="page"] { color: var(--ink); }
+@media (max-width: 420px) { header.site { gap: 8px; } .brand { font-size: 18px; gap: 8px; } .brand img { width: 26px; height: 26px; } nav.site { flex-wrap: nowrap; } nav.site a { margin-left: 10px; font-size: 13.5px; white-space: nowrap; } }
+
+/* Landing */
+.hero { padding: 28px 0 8px; text-align: center; }
+.app-icon { width: 144px; height: 144px; display: block; margin: 0 auto; filter: drop-shadow(0 10px 22px rgba(120, 60, 10, .22)); }
+.wordmark { font-family: var(--script); font-weight: 400; font-size: clamp(44px, 12vw, 64px); line-height: 1.1; margin: 14px 0 4px; }
+.tagline { font-size: clamp(21px, 5vw, 26px); font-weight: 700; line-height: 1.25; margin: 0 0 12px; }
+.hero p.lead { color: var(--muted); font-size: 18px; margin: 0 auto 24px; max-width: 32em; }
+
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 54px; padding: 12px 28px; border-radius: 999px;
+  font-weight: 700; font-size: 17px; text-decoration: none;
+  background: var(--orange); color: var(--on-orange);
+  box-shadow: 0 6px 18px rgba(244, 126, 23, .35);
+}
+.button:focus-visible { outline-color: var(--ink); }
+.note { color: var(--muted); font-size: 15px; margin: 14px 0 0; }
+
+/* Screenshots: swipeable row on phones, four columns on wide screens */
+.shots { margin: 32px -16px 8px; }
+.shots ul {
+  list-style: none; margin: 0; padding: 4px 16px 12px;
+  display: grid; grid-auto-flow: column; grid-auto-columns: 62%; gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+}
+.shots li { scroll-snap-align: center; }
+.shots img { display: block; width: 100%; border-radius: 26px; border: 1px solid var(--line); background: var(--surface); }
+@media (min-width: 720px) {
+  .shots { margin: 36px 0 8px; }
+  .shots ul { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; padding: 4px 0 12px; }
+}
+
+.features { display: grid; gap: 14px; margin: 28px 0 20px; }
+@media (min-width: 600px) { .features { grid-template-columns: 1fr 1fr; } }
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px 18px; }
+.feature h2 { margin: 0 0 4px; font-size: 18px; line-height: 1.3; }
+.feature h2::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); margin-right: 8px; vertical-align: 2px; }
+.feature p { margin: 0; color: var(--muted); }
+
+.pricing { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; margin: 0 0 44px; }
+.pricing h2 { font-size: 22px; margin: 0 0 6px; }
+.pricing ul { margin: 0; padding-left: 20px; }
+
+/* Text pages */
+.doc h1 { font-size: 34px; line-height: 1.15; margin: 28px 0 6px; }
+.doc .updated { color: var(--muted); margin: 0 0 18px; }
+.doc .summary { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--orange); border-radius: 14px; padding: 16px 20px; margin: 0 0 8px; }
+.doc h2 { font-size: 22px; margin: 32px 0 8px; }
+.doc h3 { font-size: 18px; margin: 22px 0 4px; }
+.doc ul { padding-left: 22px; }
+.doc table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.doc th { color: var(--muted); font-weight: 700; }
+.table-wrap { overflow-x: auto; }
+
+footer.site { border-top: 1px solid var(--line); margin-top: 40px; padding: 22px 0 40px; color: var(--muted); font-size: 14px; }
+footer.site nav a { color: var(--muted); margin-right: 16px; display: inline-block; }
+footer.site p { margin: 8px 0 0; }
